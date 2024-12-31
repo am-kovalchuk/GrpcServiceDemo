@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService.Protos";
+
+service Payment {
+	rpc GetOrderPayment (OrderPaymentModel) returns (PaymentVerificationResponse);
+}
+
+message OrderPaymentModel {
+	int32 orderNumber = 1;	
+	string creditCardNumber = 2;
+	string creditCardSecurityCode = 3;
+	double amount = 4;
+}
+
+message PaymentVerificationResponse {
+	int32 orderNumber = 1;
+	bool success = 2;
+	string message = 3;
+}
